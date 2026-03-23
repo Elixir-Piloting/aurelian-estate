@@ -1,26 +1,122 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F9F9F9;
+  --foreground: #1A1C1C;
+  --primary: #000000;
+  --primary-container: #3B3B3B;
+  --secondary: #C6A87D;
+  --secondary-container: #F0D0A2;
+  --surface: #F9F9F9;
+  --surface-container-low: #F3F3F3;
+  --surface-container-lowest: #FFFFFF;
+  --surface-container: #EEEEEE;
+  --outline: #777777;
+  --outline-variant: #C6C6C6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-secondary: var(--secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-surface: var(--surface);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container: var(--surface-container);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), Inter, sans-serif;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-noto-serif), "Noto Serif", serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.5s ease-out forwards;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+.hover-lift {
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+}
+
+.image-zoom {
+  transition: transform 0.8s ease-out;
+}
+
+.image-zoom:hover {
+  transform: scale(1.05);
+}
+
+.stagger-1 > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-2 > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-3 > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-4 > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-5 > *:nth-child(5) { animation-delay: 400ms; }
+.stagger-6 > *:nth-child(6) { animation-delay: 500ms; }
+
+section {
+  overflow-x: hidden;
 }
