@@ -18,7 +18,7 @@ export default function MobileNav() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden p-2"
+        className="md:hidden p-2 z-50"
         aria-label="Toggle menu"
       >
         <motion.div
@@ -30,7 +30,7 @@ export default function MobileNav() {
               closed: { rotate: 0, y: 0 },
               open: { rotate: 45, y: 9 },
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-full h-[2px] bg-[#000000] origin-center"
           />
           <motion.span
@@ -38,7 +38,7 @@ export default function MobileNav() {
               closed: { opacity: 1 },
               open: { opacity: 0 },
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-full h-[2px] bg-[#000000]"
           />
           <motion.span
@@ -46,7 +46,7 @@ export default function MobileNav() {
               closed: { rotate: 0, y: 0 },
               open: { rotate: -45, y: -9 },
             }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="w-full h-[2px] bg-[#000000] origin-center"
           />
         </motion.div>
@@ -55,38 +55,40 @@ export default function MobileNav() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 top-[73px] bg-[#F9F9F9] z-40"
+            className="fixed inset-0 bg-[#FFFFFF] z-40 flex items-center justify-center"
           >
-            <nav className="flex flex-col items-center justify-center h-full gap-8">
+            <nav className="flex flex-col items-center justify-center gap-12">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  exit={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.4, delay: index * 0.08, ease: "easeOut" }}
                 >
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-2xl font-[family-name:var(--font-noto-serif)] tracking-wider text-[#000000] hover:text-[#C6A87D] transition-colors"
+                    className="text-4xl font-[family-name:var(--font-noto-serif)] tracking-[0.15em] text-[#000000] hover:text-[#C6A87D] transition-colors duration-300"
                   >
                     {link.label}
                   </Link>
                 </motion.div>
               ))}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.4 }}
+                exit={{ opacity: 0, y: 30 }}
+                transition={{ duration: 0.4, delay: 0.35, ease: "easeOut" }}
               >
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="inline-block px-8 py-3 bg-[#000000] text-[#E2E2E2] text-sm tracking-wider hover:bg-[#3B3B3B] hover:scale-[1.02] transition-all duration-200 mt-4"
+                  className="inline-block px-10 py-4 bg-[#000000] text-[#FFFFFF] text-sm tracking-[0.2em] hover:bg-[#C6A87D] transition-colors duration-300 mt-4"
                 >
                   ENQUIRE
                 </Link>
